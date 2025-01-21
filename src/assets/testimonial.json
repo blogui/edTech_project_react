@@ -1,0 +1,39 @@
+[
+    {
+      "id": 1,
+      "image": "https://via.placeholder.com/100",
+      "name": "John Doe",
+      "feedback": "This platform is amazing! The courses are very comprehensive and easy to understand."
+    },
+    {
+      "id": 2,
+      "image": "https://via.placeholder.com/100",
+      "name": "Jane Smith",
+      "feedback": "I learned so much here! Highly recommend it to anyone looking to improve their skills."
+    },
+    {
+      "id": 3,
+      "image": "https://via.placeholder.com/100",
+      "name": "Mike Johnson",
+      "feedback": "A wonderful experience! The instructors are knowledgeable and supportive."
+    },
+    {
+      "id": 4,
+      "image": "https://via.placeholder.com/100",
+      "name": "Emily Davis",
+      "feedback": "The courses are very well structured and provide real-world applications."
+    },
+    {
+      "id": 5,
+      "image": "https://via.placeholder.com/100",
+      "name": "Chris Lee",
+      "feedback": "I would recommend this to everyone. Excellent learning environment."
+    },
+    {
+      "id": 6,
+      "image": "https://via.placeholder.com/100",
+      "name": "Anna Brown",
+      "feedback": "Fantastic content and great instructors! Very happy with my learning experience."
+    }
+  ]
+  

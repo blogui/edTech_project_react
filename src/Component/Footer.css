@@ -1,0 +1,16 @@
+.SubHeading{
+    opacity: 0.8;
+     
+}
+.SubHeading:hover {
+    opacity: 1;
+    transform: scale(1.05); /* Increases size to 120% */
+    transition: transform 0.3s ease-in-out; /* Smooth transition effect */
+}
+
+.contact_alignment{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 6px !important;
+}

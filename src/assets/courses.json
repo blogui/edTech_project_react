@@ -1,0 +1,118 @@
+{
+    "categories": [
+      {
+        "id": 1,
+        "name": "11 Plus",
+        "courses": [
+          {
+            "id": "NVR",
+            "name": "11 Plus",
+            "title": "NVR",
+            "image": "https://campus.w3schools.com/cdn/shop/files/react_930c122c-8d12-4a0a-85ef-67ca7e78bccf_1200x1200.png?v=1734688338",
+            "description": "Learn the fundamentals of web development using HTML and CSS.",
+            "content": [
+                {"id": "Module - 01: Shapes",
+                 "description": "Shows the shape"
+                },
+                {"id": "Module - 02: Counting",
+                 "description": "Shows the shape"
+                },
+                {"id": "Module - 01: Pointing",
+                 "description": "Shows the shape"
+                },
+                {"id": "Module - 01: Shading and Line Types",
+                 "description": "Shows the shape"
+                },
+                {"id": "Module - 01: Order and Position",
+                 "description": "Shows the shape"
+                }
+            ]
+          },
+          {
+            "id": "VR",
+            "name": "11 Plus",
+            "title": "VR",
+            "image": "https://campus.w3schools.com/cdn/shop/files/react_930c122c-8d12-4a0a-85ef-67ca7e78bccf_1200x1200.png?v=1734688338",
+            "description": "A deep dive into JavaScript basics and DOM manipulation.",
+            "content": [
+                {"id": "Module - 01: Shapes",
+                 "description": "Shows the shape"
+                },
+                {"id": "Module - 02: Counting",
+                 "description": "Shows the shape"
+                },
+                {"id": "Module - 03: Pointing",
+                 "description": "Shows the shape"
+                },
+                {"id": "Module - 04: Shading and Line Types",
+                 "description": "Shows the shape"
+                }
+            ]
+          },
+          {
+            "id": "Math",
+            "name": "11 Plus",
+            "title": "Maths",
+            "image": "path_to_image_1.jpg",
+            "description": "Learn the fundamentals of web development using HTML and CSS.",
+            "content": [
+                {"id": "Module - 01: Shapes",
+                 "description": "Shows the shape"
+                },
+                {"id": "Module - 02: Counting",
+                 "description": "Shows the shape"
+                }
+            ]
+          },
+          {
+            "id": "English",
+            "name": "11 Plus",
+            "title": "English",
+            "image": "path_to_image_1.jpg",
+            "description": "Learn the fundamentals of web development using HTML and CSS.",
+            "content": [
+                {"id": "Module - 01: Shapes",
+                 "description": "Shows the shape"
+                },
+                {"id": "Module - 02: Counting",
+                 "description": "Shows the shape"
+                },
+                {"id": "Module - 03: Pointing",
+                 "description": "Shows the shape"
+                },
+                {"id": "Module - 04: Shading and Line Types",
+                 "description": "Shows the shape"
+                },
+                {"id": "Module - 05: Order and Position",
+                 "description": "Shows the shape"
+                },
+                {"id": "Module - 06: Order and Position",
+                 "description": "Shows the shape"
+                }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "IQ and Critical Thinking",
+        "courses": [
+          {
+            "id": "ds101",
+            "name": "IQ and Critical Thinking",
+            "title": "Introduction to Python",
+            "image": "path_to_image_3.jpg",
+            "description": "Start your Python journey with this beginner-friendly course."
+          },
+          {
+            "id": "ds102",
+            "name": "IQ and Critical Thinking",
+            "title": "Machine Learning Basics",
+            "image": "path_to_image_4.jpg",
+            "description": "Learn the fundamentals of machine learning algorithms."
+          }
+        ]
+      }
+    ]
+  }
+  
