@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/edTech_project_react/static/css/main.12815a1d.css",
+    "main.js": "/edTech_project_react/static/js/main.35b75176.js",
+    "static/js/453.8c301df7.chunk.js": "/edTech_project_react/static/js/453.8c301df7.chunk.js",
+    "static/media/aboutMe1.jpeg": "/edTech_project_react/static/media/aboutMe1.d169b14b3071853bf7b1.jpeg",
+    "static/media/child_studying_1.svg": "/edTech_project_react/static/media/child_studying_1.8ed2e1330b532b5b7054381fa5216deb.svg",
+    "static/media/logo.jpg": "/edTech_project_react/static/media/logo.bfc5180b294ead86ff8a.jpg",
+    "static/media/slick.svg": "/edTech_project_react/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/edTech_project_react/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/edTech_project_react/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/edTech_project_react/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/edTech_project_react/index.html",
+    "main.12815a1d.css.map": "/edTech_project_react/static/css/main.12815a1d.css.map",
+    "main.35b75176.js.map": "/edTech_project_react/static/js/main.35b75176.js.map",
+    "453.8c301df7.chunk.js.map": "/edTech_project_react/static/js/453.8c301df7.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.12815a1d.css",
+    "static/js/main.35b75176.js"
+  ]
+}
