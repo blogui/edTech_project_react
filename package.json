@@ -26,6 +26,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -48,6 +50,8 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://blogui.github.io/edTech_project_react"
-
+  "homepage": "https://blogui.github.io/edTech_project_react",
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  }
 }
