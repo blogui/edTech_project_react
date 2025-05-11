@@ -1,13 +1,17 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery } from "@mui/material";
 import myImage from "../assets/child_studying_1.svg"; // Importing the local image
 import logo from "../assets/logo.jpg"; // Assuming you have a logo image
 
 function Main({ leftTitle, leftSubtitle }) {
+  // Check if the screen size is small (e.g., less than 600px)
+  const isSmallScreen = useMediaQuery("(max-width:600px)");
+
   return (
     <Box
       sx={{
         display: "flex",
+        flexDirection: isSmallScreen ? "column" : "row", // Stack on small screens
         width: "100%",
         minHeight: "90vh", // Flexible height for content below
         backgroundColor: "#012478",
@@ -20,26 +24,32 @@ function Main({ leftTitle, leftSubtitle }) {
       {/* Left Section */}
       <Box
         sx={{
-          width: "50%",
+          width: isSmallScreen ? "100%" : "50%",
           backgroundColor: "#012478",
           color: "white",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          padding: 0,
-          margin: 0,
+          padding: "20px",
         }}
       >
         {/* Logo */}
         <Box sx={{ mb: 2 }}>
-          <img src={logo} alt="Logo" style={{ maxWidth: "100px", height: "auto" }} />
+          <img
+            src={logo}
+            alt="Logo"
+            style={{
+              maxWidth: isSmallScreen ? "80px" : "100px", // Smaller logo on small screens
+              height: "auto",
+            }}
+          />
         </Box>
 
         {/* Text */}
         <Box textAlign="center">
           <Typography
-            variant="h1"
+            variant={isSmallScreen ? "h2" : "h1"} // Smaller heading on small screens
             component="div"
             fontWeight="bold"
             sx={{ mb: 2 }}
@@ -47,7 +57,7 @@ function Main({ leftTitle, leftSubtitle }) {
             {leftTitle || "LOGIC JUNIOR"}
           </Typography>
           <Typography
-            variant="h4"
+            variant={isSmallScreen ? "h5" : "h4"} // Smaller subtitle on small screens
             component="div"
             sx={{ fontStyle: "italic" }}
           >
@@ -57,17 +67,16 @@ function Main({ leftTitle, leftSubtitle }) {
       </Box>
 
       {/* Right Section */}
-      <Box
-        sx={{
-          width: "50%",
-          backgroundImage: `url(${myImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          margin: 0,
-          padding: 0,
-          display: "block",
-        }}
-      />
+      {!isSmallScreen && ( // Hide the image section on small screens
+        <Box
+          sx={{
+            width: "50%",
+            backgroundImage: `url(${myImage})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
+      )}
 
       {/* Global Reset */}
       <style>

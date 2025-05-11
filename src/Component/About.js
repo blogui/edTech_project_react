@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography, Grid } from "@mui/material";
-import me from "../assets/aboutMe1.jpeg";
+ 
 
 function AboutUs() {
   return (
@@ -56,8 +56,8 @@ function AboutUs() {
         <Grid item xs={12} md={6}>
           <Box
             component="img"
-            src={me} // Replace with your image URL
-            alt="About Us"
+            // src={me} // Replace with your image URL
+            alt="Use any static image"
             sx={{
               width: "100%",
               height: "auto",

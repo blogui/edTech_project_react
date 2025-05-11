@@ -4,50 +4,84 @@ import { Star, Book, SupportAgent, Group, BusinessCenter, School } from "@mui/ic
 
 function SuccessStory() {
   return (
-    <Box sx={{ backgroundColor: "#e0f2f1", py: 6 }}>
+    <Box sx={{ backgroundColor: "#e0f2f1", py: { xs: 4, md: 6 } }}>
       <Container>
         {/* Title Section */}
-        <Typography variant="h4" align="center" fontWeight="bold" gutterBottom>
+        <Typography
+          variant="h4"
+          align="center"
+          fontWeight="bold"
+          gutterBottom
+          sx={{ fontSize: { xs: "20px", md: "32px" } }}
+        >
           Your Success Story is Next
         </Typography>
 
-        <Grid container spacing={4} sx={{ mt: 4 }}>
+        <Grid container spacing={4} sx={{ mt: { xs: 2, md: 4 } }}>
           {/* Left Content Section */}
           <Grid item xs={12} md={6}>
-            <Box sx={{ mb: 4 }}>
-              <Typography variant="h5" fontWeight="bold" gutterBottom>
+            <Box sx={{ mb: { xs: 3, md: 4 } }}>
+              <Typography
+                variant="h5"
+                fontWeight="bold"
+                gutterBottom
+                sx={{ fontSize: { xs: "16px", md: "20px" } }}
+              >
                 World Class Pedagogy
               </Typography>
-              <ul>
-                <li>Learn from best faculties & industry experts</li>
-                <li>Learn with fun hands-on exercises & assignments</li>
+              <ul style={{ paddingLeft: "20px" }}>
+                <li style={{ marginBottom: "8px" }}>
+                  Learn from best faculties & industry experts
+                </li>
+                <li style={{ marginBottom: "8px" }}>
+                  Learn with fun hands-on exercises & assignments
+                </li>
                 <li>Participate in group activities</li>
               </ul>
             </Box>
-            <Box sx={{ mb: 4 }}>
-              <Typography variant="h5" fontWeight="bold" gutterBottom>
+            <Box sx={{ mb: { xs: 3, md: 4 } }}>
+              <Typography
+                variant="h5"
+                fontWeight="bold"
+                gutterBottom
+                sx={{ fontSize: { xs: "16px", md: "20px" } }}
+              >
                 Personalized Guidance with 24/7 Support
               </Typography>
-              <ul>
-                <li>24/7 learning support</li>
-                <li>Global certification support</li>
+              <ul style={{ paddingLeft: "20px" }}>
+                <li style={{ marginBottom: "8px" }}>24/7 learning support</li>
+                <li style={{ marginBottom: "8px" }}>Global certification support</li>
                 <li>Premium content with lifetime free upgrade</li>
               </ul>
             </Box>
             <Box>
-              <Typography variant="h5" fontWeight="bold" gutterBottom>
+              <Typography
+                variant="h5"
+                fontWeight="bold"
+                gutterBottom
+                sx={{ fontSize: { xs: "16px", md: "20px" } }}
+              >
                 Career Assistance
               </Typography>
-              <ul>
-                <li>Resume building & interview prep</li>
-                <li>Job-ready employees post training</li>
+              <ul style={{ paddingLeft: "20px" }}>
+                <li style={{ marginBottom: "8px" }}>Resume building & interview prep</li>
+                <li style={{ marginBottom: "8px" }}>
+                  Job-ready employees post training
+                </li>
                 <li>Network with peers & interact with industry leaders</li>
               </ul>
             </Box>
           </Grid>
 
           {/* Right Cards Section */}
-          <Grid item xs={12} md={6}>
+          <Grid
+            item
+            xs={12}
+            md={6}
+            sx={{
+              display: { xs: "none", md: "block" }, // Hide on small screens
+            }}
+          >
             <Grid container spacing={3}>
               {[
                 { icon: <Star />, label: "5/5 Rating" },
@@ -58,10 +92,21 @@ function SuccessStory() {
                 { icon: <BusinessCenter />, label: "Job Support*" },
               ].map((item, index) => (
                 <Grid item xs={6} key={index}>
-                  <Card sx={{ backgroundColor: "#f5f5f5", textAlign: "center", boxShadow: 3 }}>
+                  <Card
+                    sx={{
+                      backgroundColor: "#f5f5f5",
+                      textAlign: "center",
+                      boxShadow: 3,
+                      padding: { xs: 1, md: 2 },
+                    }}
+                  >
                     <CardContent>
                       {item.icon}
-                      <Typography variant="body1" fontWeight="bold">
+                      <Typography
+                        variant="body1"
+                        fontWeight="bold"
+                        sx={{ fontSize: { xs: "14px", md: "16px" } }}
+                      >
                         {item.label}
                       </Typography>
                     </CardContent>

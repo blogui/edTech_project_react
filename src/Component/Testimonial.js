@@ -6,6 +6,8 @@ import {
   Typography,
   IconButton,
   Grid,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -15,27 +17,39 @@ import testimonialsData from "../assets/testimonial.json"; // Adjust path as nee
 
 function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const theme = useTheme();
 
-  // Function to handle next arrow click
+  // Media queries to determine screen size
+  const isXs = useMediaQuery(theme.breakpoints.down("sm")); // Extra small devices
+  const isSm = useMediaQuery(theme.breakpoints.only("sm")); // Small devices
+  const isMdUp = useMediaQuery(theme.breakpoints.up("md")); // Medium and larger devices
+
+  // Determine the number of cards to display based on screen size
+  const cardsToShow = isXs ? 1 : isSm ? 2 : 3;
+
+  // Adjust the current testimonials to display
+  const currentTestimonials = testimonialsData.slice(
+    currentIndex,
+    currentIndex + cardsToShow
+  );
+
+  // Handle next arrow click
   const handleNext = () => {
-    if (currentIndex < testimonialsData.length - 3) {
+    if (currentIndex < testimonialsData.length - cardsToShow) {
       setCurrentIndex(currentIndex + 1);
     } else {
       setCurrentIndex(0); // Reset to the beginning for infinite scroll
     }
   };
 
-  // Function to handle previous arrow click
+  // Handle previous arrow click
   const handlePrev = () => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
     } else {
-      setCurrentIndex(testimonialsData.length - 3); // Jump to the last set for infinite scroll
+      setCurrentIndex(testimonialsData.length - cardsToShow); // Jump to the last set for infinite scroll
     }
   };
-
-  // Get the current 3 testimonials to display
-  const currentTestimonials = testimonialsData.slice(currentIndex, currentIndex + 3);
 
   return (
     <Box
@@ -46,7 +60,7 @@ function Testimonials() {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        position: "relative", // Allows absolute positioning for the header
+        position: "relative",
       }}
     >
       <Typography
@@ -56,11 +70,12 @@ function Testimonials() {
         color="#012478"
         sx={{
           position: "absolute",
-          top: "20px", // 10px padding from the top
-          left: "50%", // Center the text horizontally
-          transform: "translateX(-50%)", // Adjust for true centering
-          backgroundColor: "#f2f2f2", // Optional: add background for visibility
-          padding: "5px", // Optional padding around the text
+          top: "20px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          backgroundColor: "#f2f2f2",
+          padding: "5px",
+          fontSize: { xs: "20px", sm: "24px", md: "28px" },
         }}
       >
         What Our Users Say
@@ -93,6 +108,7 @@ function Testimonials() {
                   flexDirection: "column",
                   justifyContent: "center",
                   alignItems: "center",
+                  boxShadow: 3,
                 }}
               >
                 <CardContent>
