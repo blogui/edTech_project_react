@@ -1,137 +1,125 @@
-import React, { useState } from "react";
-import Logo from "../assets/logo.jpg"; // Importing local logo image
-import {
-  AppBar,
-  Toolbar,
-  IconButton,
-  Typography,
-  Button,
-  Box,
-  Slide,
-} from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+import React from "react";
+import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import './Navbar.css'
+import Logo from "../assets/logo.jpg";
 
-function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+const navItems = [
+  { label: "Home", path: "/" },
+  { label: "Courses", path: "/courses" },
+  { label: "About Us", path: "/about" },
+];
 
-  const handleMenuToggle = () => {
-    setMobileMenuOpen((prev) => !prev);
-  };
-
-
+const CustomNavbar = () => {
   return (
-    <>
-      <AppBar position="fixed" sx={{ backgroundColor: "#ffffff", color: "black", width: "100%", top: 0, zIndex: 10 }}>
-        <Toolbar>
-          {/* Logo Section */}
-          <Typography
-  variant="h6"
-  component={Link}
-  to="/" // Replace with your desired path
-  sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', textDecoration: 'none', color: "black" }}
->
-  <img
-    src={Logo} // Using local logo image
-    alt="Logo"
-    style={{ marginRight: '10px', height: '40px' }}
-  />
-  Logic Junior
-</Typography>
+    <Navbar
+      expand="md"
+      bg="light"
+      fixed="top"
+      className="py-2 shadow-sm"
+      style={{ fontFamily: "Poppins, sans-serif" }}
+    >
+      <Container>
+        {/* Logo */}
+        <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
+          <img
+            src={Logo}
+            alt="Logo"
+            className="rounded"
+            style={{ height: "40px", marginRight: "10px" }}
+          />
+          <span className="fw-semibold fs-5">Logic Junior</span>
+        </Navbar.Brand>
 
+        {/* Toggle for mobile */}
+        <Navbar.Toggle aria-controls="main-navbar-nav" />
 
-          {/* Desktop Buttons */}
-          <Box sx={{ display: { xs: "none", md: "flex" }, gap: 2 }}>
-            <Button className="button_link" ><Link to="/courses" >Courses</Link></Button>
-            <Button className="button_link" ><Link to="/about">About Us </Link>  </Button>
-            <Button className="button_link" ><Link to="/contact">Contact Us</Link> </Button>
+        <Navbar.Collapse id="main-navbar-nav">
+          {/* Center Nav Links */}
+          <Nav className="mx-auto text-center gap-md-3 mt-3 mt-md-0">
+            {navItems.map((item, index) => (
+              <Nav.Link
+                key={index}
+                as={Link}
+                to={item.path}
+                className="text-dark nav-link-modern"
+              >
+                {item.label}
+              </Nav.Link>
+            ))}
+          </Nav>
 
-          </Box>
-
-          {/* Mobile Menu Icon */}
-          <Box sx={{ display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              edge="end"
-              color="inherit"
-              onClick={handleMenuToggle}
-            >
-              <MenuIcon />
-            </IconButton>
-          </Box>
-        </Toolbar>
-
-        {/* Full-Width Mobile Menu */}
-        <Slide direction="down" in={mobileMenuOpen} mountOnEnter unmountOnExit>
-          <Box
-            sx={{
-              position: "absolute",
-              top: "56px", // Adjust for AppBar height
-              left: 0,
-              width: "100%",
-              backgroundColor: "white",
-              color: "black",
-              zIndex: 10,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              py: 2,
-              border: "2px solid red",
-            }}
-          >
-            <Button
-              onClick={handleMenuToggle}
-              sx={{
-                width: "100%",
-                textAlign: "center",
-                color: "black",
-                "&:hover": {
-                  backgroundColor: "#012478",
-                  color: "white",
-                },
-              }}
-            >
-              Courses
+          {/* Enquiry Button */}
+          <div className="text-center text-md-end mt-3 mt-md-0">
+            <Button as={Link} to="/contact" className="enquiry-button">
+              Enquiry Now
             </Button>
-            <Button
-              onClick={handleMenuToggle}
-              sx={{
-                width: "100%",
-                textAlign: "center",
-                color: "black",
-                "&:hover": {
-                  backgroundColor: "#012478",
-                  color: "white",
-                },
-              }}
-            >
-              About
-            </Button>
-            <Button
-              onClick={handleMenuToggle}
-              sx={{
-                width: "100%",
-                textAlign: "center",
-                color: "black",
-                "&:hover": {
-                  backgroundColor: "#012478",
-                  color: "white",
-                },
-              }}
-            >
-              Contact Us
-            </Button>
-          </Box>
-        </Slide>
-      </AppBar>
+          </div>
+        </Navbar.Collapse>
+      </Container>
 
-      {/* Add margin top to the next component to prevent overlap */}
-      <Box sx={{ marginTop: "64px" }}> {/* Adjust the value if needed */}
+      {/* Styles */}
+      <style>{`
+        .nav-link-modern {
+          font-weight: 500;
+          position: relative;
+        }
 
-      </Box>
-    </>
+        .nav-link-modern::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background-color: #007bff;
+          transition: width 0.3s ease;
+        }
+
+        .nav-link-modern:hover::after {
+          width: 100%;
+        }
+
+        .enquiry-button {
+          background-color: #007bff;
+          color: white;
+          font-weight: 500;
+          border: none;
+          padding: 8px 18px;
+          border-radius: 6px;
+          position: relative;
+          overflow: hidden;
+          transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .enquiry-button::before {
+          content: "";
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%) scale(0);
+          width: 300%;
+          height: 300%;
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: 50%;
+          transition: transform 0.4s ease;
+          z-index: 0;
+        }
+
+        .enquiry-button:hover::before {
+          transform: translate(-50%, -50%) scale(1);
+        }
+
+        .enquiry-button:hover {
+          background-color: #0056b3;
+          transform: translateY(-2px);
+        }
+
+        .enquiry-button:focus {
+          box-shadow: none;
+        }
+      `}</style>
+    </Navbar>
   );
-}
+};
 
-export default Navbar;
+export default CustomNavbar;

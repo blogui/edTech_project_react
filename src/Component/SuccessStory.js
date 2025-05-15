@@ -1,87 +1,116 @@
 import React from "react";
-import { Box, Container, Grid, Typography, Card, CardContent } from "@mui/material";
-import { Star, Book, SupportAgent, Group, BusinessCenter, School } from "@mui/icons-material";
+import {
+  Box,
+  Container,
+  Grid,
+  Typography,
+  Card,
+  CardContent,
+} from "@mui/material";
+import {
+  Star,
+  Book,
+  SupportAgent,
+  Group,
+  BusinessCenter,
+  School,
+} from "@mui/icons-material";
+import { motion } from "framer-motion";
+
+const textVariant = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i = 1) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.2, duration: 0.6, ease: "easeOut" },
+  }),
+};
 
 function SuccessStory() {
   return (
-    <Box sx={{ backgroundColor: "#e0f2f1", py: { xs: 4, md: 6 } }}>
+    <Box
+      sx={{
+        background: "linear-gradient(to right, #e0f7fa, #ffffff)",
+        py: { xs: 4, md: 8 },
+      }}
+    >
       <Container>
-        {/* Title Section */}
-        <Typography
-          variant="h4"
-          align="center"
-          fontWeight="bold"
-          gutterBottom
-          sx={{ fontSize: { xs: "20px", md: "32px" } }}
+        {/* Title */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={textVariant}
         >
-          Your Success Story is Next
-        </Typography>
+          <Typography
+            variant="h4"
+            align="center"
+            fontWeight="bold"
+            gutterBottom
+            sx={{ fontSize: { xs: "24px", md: "36px" }, color: "#004d40" }}
+          >
+            Your Success Story is Next
+          </Typography>
+        </motion.div>
 
-        <Grid container spacing={4} sx={{ mt: { xs: 2, md: 4 } }}>
-          {/* Left Content Section */}
+        <Grid container spacing={6} sx={{ mt: 4 }}>
+          {/* Left Content */}
           <Grid item xs={12} md={6}>
-            <Box sx={{ mb: { xs: 3, md: 4 } }}>
-              <Typography
-                variant="h5"
-                fontWeight="bold"
-                gutterBottom
-                sx={{ fontSize: { xs: "16px", md: "20px" } }}
+            {[
+              {
+                title: "World Class Pedagogy",
+                points: [
+                  "Learn from best faculties & industry experts",
+                  "Learn with fun hands-on exercises & assignments",
+                  "Participate in group activities",
+                ],
+              },
+              {
+                title: "Personalized Guidance with 24/7 Support",
+                points: [
+                  "24/7 learning support",
+                  "Global certification support",
+                  "Premium content with lifetime free upgrade",
+                ],
+              },
+              {
+                title: "Career Assistance",
+                points: [
+                  "Resume building & interview prep",
+                  "Job-ready employees post training",
+                  "Network with peers & interact with industry leaders",
+                ],
+              },
+            ].map((section, i) => (
+              <motion.div
+                key={i}
+                custom={i}
+                initial="hidden"
+                animate="visible"
+                variants={textVariant}
               >
-                World Class Pedagogy
-              </Typography>
-              <ul style={{ paddingLeft: "20px" }}>
-                <li style={{ marginBottom: "8px" }}>
-                  Learn from best faculties & industry experts
-                </li>
-                <li style={{ marginBottom: "8px" }}>
-                  Learn with fun hands-on exercises & assignments
-                </li>
-                <li>Participate in group activities</li>
-              </ul>
-            </Box>
-            <Box sx={{ mb: { xs: 3, md: 4 } }}>
-              <Typography
-                variant="h5"
-                fontWeight="bold"
-                gutterBottom
-                sx={{ fontSize: { xs: "16px", md: "20px" } }}
-              >
-                Personalized Guidance with 24/7 Support
-              </Typography>
-              <ul style={{ paddingLeft: "20px" }}>
-                <li style={{ marginBottom: "8px" }}>24/7 learning support</li>
-                <li style={{ marginBottom: "8px" }}>Global certification support</li>
-                <li>Premium content with lifetime free upgrade</li>
-              </ul>
-            </Box>
-            <Box>
-              <Typography
-                variant="h5"
-                fontWeight="bold"
-                gutterBottom
-                sx={{ fontSize: { xs: "16px", md: "20px" } }}
-              >
-                Career Assistance
-              </Typography>
-              <ul style={{ paddingLeft: "20px" }}>
-                <li style={{ marginBottom: "8px" }}>Resume building & interview prep</li>
-                <li style={{ marginBottom: "8px" }}>
-                  Job-ready employees post training
-                </li>
-                <li>Network with peers & interact with industry leaders</li>
-              </ul>
-            </Box>
+                <Box sx={{ mb: 4 }}>
+                  <Typography
+                    variant="h5"
+                    fontWeight="bold"
+                    gutterBottom
+                    sx={{ color: "#00695c" }}
+                  >
+                    {section.title}
+                  </Typography>
+                  <ul style={{ paddingLeft: "20px", color: "#424242" }}>
+                    {section.points.map((point, idx) => (
+                      <li key={idx} style={{ marginBottom: "8px" }}>
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                </Box>
+              </motion.div>
+            ))}
           </Grid>
 
-          {/* Right Cards Section */}
-          <Grid
-            item
-            xs={12}
-            md={6}
-            sx={{
-              display: { xs: "none", md: "block" }, // Hide on small screens
-            }}
-          >
+          {/* Right Cards */}
+          <Grid item xs={12} md={6}>
             <Grid container spacing={3}>
               {[
                 { icon: <Star />, label: "5/5 Rating" },
@@ -92,25 +121,38 @@ function SuccessStory() {
                 { icon: <BusinessCenter />, label: "Job Support*" },
               ].map((item, index) => (
                 <Grid item xs={6} key={index}>
-                  <Card
-                    sx={{
-                      backgroundColor: "#f5f5f5",
-                      textAlign: "center",
-                      boxShadow: 3,
-                      padding: { xs: 1, md: 2 },
-                    }}
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.98 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 * index }}
                   >
-                    <CardContent>
-                      {item.icon}
-                      <Typography
-                        variant="body1"
-                        fontWeight="bold"
-                        sx={{ fontSize: { xs: "14px", md: "16px" } }}
-                      >
-                        {item.label}
-                      </Typography>
-                    </CardContent>
-                  </Card>
+                    <Card
+                      sx={{
+                        backgroundColor: "#ffffff",
+                        textAlign: "center",
+                        boxShadow: 4,
+                        borderRadius: "16px",
+                        py: 3,
+                        transition: "0.3s",
+                        "&:hover": {
+                          backgroundColor: "#e0f2f1",
+                        },
+                      }}
+                    >
+                      <CardContent>
+                        <Box sx={{ color: "#00897b", mb: 1 }}>{item.icon}</Box>
+                        <Typography
+                          variant="body1"
+                          fontWeight="bold"
+                          sx={{ fontSize: "16px" }}
+                        >
+                          {item.label}
+                        </Typography>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
                 </Grid>
               ))}
             </Grid>

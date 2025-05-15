@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { Box, Card, CardContent, Typography, CardMedia, Button } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardContent,
+  Typography,
+  CardMedia,
+  Button,
+  Container,
+  IconButton,
+} from "@mui/material";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
+import { motion } from "framer-motion";
 import coursesData from "../assets/courses.json";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { IconButton } from "@mui/material";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
-const Arrow = ({ direction, onClick, show }) => (
+const Arrow = ({ direction, onClick, show }) =>
   show && (
     <IconButton
       onClick={onClick}
@@ -18,7 +27,7 @@ const Arrow = ({ direction, onClick, show }) => (
         top: "50%",
         [direction]: "10px",
         zIndex: 10,
-        color: "#e2f3fb",
+        color: "#fff",
         backgroundColor: "rgba(0, 0, 0, 0.5)",
         transform: "translateY(-50%)",
         "&:hover": {
@@ -28,174 +37,154 @@ const Arrow = ({ direction, onClick, show }) => (
     >
       {direction === "left" ? <KeyboardArrowLeftIcon /> : <KeyboardArrowRightIcon />}
     </IconButton>
-  )
-);
+  );
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.15 },
+  }),
+};
 
 function Courses() {
   const [categories, setCategories] = useState([]);
   const [slideStates, setSlideStates] = useState({});
   const [slidesToShow, setSlidesToShow] = useState(3);
 
-  // Detect screen size and adjust slidesToShow
   useEffect(() => {
     const updateSlidesToShow = () => {
       const screenWidth = window.innerWidth;
-      if (screenWidth < 600) {
-        setSlidesToShow(1);
-      } else if (screenWidth < 1024) {
-        setSlidesToShow(2);
-      } else {
-        setSlidesToShow(3);
-      }
+      setSlidesToShow(screenWidth < 600 ? 1 : screenWidth < 1024 ? 2 : 3);
     };
-
     updateSlidesToShow();
     window.addEventListener("resize", updateSlidesToShow);
-
-    return () => {
-      window.removeEventListener("resize", updateSlidesToShow);
-    };
+    return () => window.removeEventListener("resize", updateSlidesToShow);
   }, []);
 
   useEffect(() => {
     setCategories(coursesData.categories);
-
-    // Initialize slide states for each category
-    const initialSlideStates = {};
-    coursesData.categories.forEach((category) => {
-      initialSlideStates[category.id] = 0; // Default to first slide
-    });
-    setSlideStates(initialSlideStates);
+    const initialStates = {};
+    coursesData.categories.forEach((c) => (initialStates[c.id] = 0));
+    setSlideStates(initialStates);
   }, []);
 
   const handleBeforeChange = (categoryId, oldIndex, newIndex) => {
-    setSlideStates((prevStates) => ({
-      ...prevStates,
-      [categoryId]: newIndex,
-    }));
+    setSlideStates((prev) => ({ ...prev, [categoryId]: newIndex }));
   };
 
-  const calculateMaxSlides = (courseCount) => {
-    return Math.max(0, courseCount - slidesToShow);
-  };
+  const calculateMaxSlides = (count) => Math.max(0, count - slidesToShow);
 
-  const sliderSettings = (categoryId, courseCount) => ({
+  const sliderSettings = (id, count) => ({
     dots: false,
     infinite: false,
     speed: 500,
     slidesToShow,
     slidesToScroll: 1,
-    beforeChange: (oldIndex, newIndex) =>
-      handleBeforeChange(categoryId, oldIndex, newIndex),
-    prevArrow: (
-      <Arrow
-        direction="left"
-        show={slideStates[categoryId] > 0} // Show left arrow if not on the first slide
-      />
-    ),
-    nextArrow: (
-      <Arrow
-        direction="right"
-        show={slideStates[categoryId] < calculateMaxSlides(courseCount)} // Show right arrow if not on the last slide
-      />
-    ),
+    beforeChange: (old, next) => handleBeforeChange(id, old, next),
+    prevArrow: <Arrow direction="left" show={slideStates[id] > 0} />,
+    nextArrow: <Arrow direction="right" show={slideStates[id] < calculateMaxSlides(count)} />,
   });
 
   return (
-    <Box
-      sx={{
-        position: "relative",
-        padding: "30px",
-        paddingTop: "60px",
-      }}
-    >
-      {/* Top "Courses" text */}
-      <Typography
-        variant="h3"
-        align="center"
-        sx={{
-          position: "absolute",
-          top: "10px",
-          left: "50%",
-          transform: "translateX(-50%)",
-          backgroundColor: "white",
-          padding: "5px 10px",
-          zIndex: 1,
-          color: "#012478",
-          fontSize: { xs: "24px", sm: "32px" },
-        }}
-      >
-        Courses
-      </Typography>
+    <Box sx={{ backgroundColor: "#f0f4fa", py: 6 }}>
+      <Container>
+        <Typography
+          variant="h3"
+          align="center"
+          sx={{
+            mb: 5,
+            fontWeight: 700,
+            color: "#012478",
+            position: "relative",
+            display: "inline-block",
+            px: 2,
+            "&::after": {
+              content: '""',
+              position: "absolute",
+              left: 0,
+              bottom: 0,
+              width: "100%",
+              height: "4px",
+              background: "linear-gradient(90deg, #4a90e2, #012478)",
+            },
+          }}
+        >
+          Courses
+        </Typography>
 
-      {/* Content section */}
-      <Box
-        sx={{
-          marginTop: { xs: "40px", sm: "20px" },
-        }}
-      >
-        {categories.map((category) => (
-          <Box key={category.id} sx={{ marginBottom: 4 }}>
-            <Typography
-              variant="h4"
-              sx={{
-                marginBottom: 2,
-                fontSize: { xs: "18px", sm: "24px" },
-                textAlign: { xs: "center", sm: "left" },
-              }}
-            >
+        {categories.map((category, categoryIndex) => (
+          <Box key={category.id} sx={{ mb: 6 }}>
+            <Typography variant="h5" sx={{ mb: 2, fontWeight: 600, color: "#333" }}>
               {category.name}
             </Typography>
 
-            <Box sx={{ position: "relative", zIndex: 0 }}>
+            <Box sx={{ position: "relative" }}>
               <Slider {...sliderSettings(category.id, category.courses.length)}>
-                {category.courses.map((course) => (
-                  <div key={course.id} style={{ padding: "0 10px" }}>
+                {category.courses.map((course, index) => (
+                  <motion.div
+                    key={course.id}
+                    custom={index}
+                    variants={fadeInUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    style={{ padding: "0 10px" }}
+                  >
                     <Card
                       sx={{
-                        width: "240px",
-                        height: "300px",
-                        border: "3px solid",
-                        borderColor: "#4a90e2",
-                        borderRadius: "12px",
-                        margin: "15px auto",
-                        overflow: "visible",
-                        boxShadow: 2,
-                        textAlign: "center",
-                        transition: "transform 0.3s, box-shadow 0.3s",
+                        width: "100%",
+                        maxWidth: 280,
+                        height: "100%",
+                        mx: "auto",
+                        borderRadius: 3,
+                        boxShadow: "0px 10px 30px rgba(0,0,0,0.1)",
+                        overflow: "hidden",
+                        transition: "transform 0.3s",
                         "&:hover": {
-                          transform: "scale(1.05)",
-                          boxShadow: "0 6px 15px rgba(0, 0, 0, 0.2)",
+                          transform: "translateY(-8px)",
                         },
                       }}
                     >
                       <CardMedia
                         component="img"
-                        alt={course.title}
-                        height="120"
                         image={course.image}
+                        alt={course.title}
+                        height="140"
                       />
-                      <CardContent>
-                        <Typography variant="h6" sx={{ fontWeight: "bold", marginBottom: 1 }}>
+                      <CardContent sx={{ textAlign: "center" }}>
+                        <Typography variant="h6" fontWeight={600} gutterBottom>
                           {course.title}
                         </Typography>
-                        <Typography variant="body2" sx={{ marginBottom: 2 }}>
+                        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
                           {course.description}
                         </Typography>
                         <Link to={`/course/${course.id}`}>
-                          <Button variant="outlined" color="primary">
+                          <Button
+                            variant="contained"
+                            size="small"
+                            sx={{
+                              background: "linear-gradient(45deg, #4a90e2, #012478)",
+                              color: "#fff",
+                              textTransform: "none",
+                              "&:hover": {
+                                background: "linear-gradient(45deg, #012478, #4a90e2)",
+                              },
+                            }}
+                          >
                             View Details
                           </Button>
                         </Link>
                       </CardContent>
                     </Card>
-                  </div>
+                  </motion.div>
                 ))}
               </Slider>
             </Box>
           </Box>
         ))}
-      </Box>
+      </Container>
     </Box>
   );
 }
